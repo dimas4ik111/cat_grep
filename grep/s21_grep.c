@@ -86,22 +86,15 @@ void grep_flag(parser_grep* tab, FILE* fd, int count_file, char* name_file) {
     }
     if (tab->l && flag_l)
         printf("%s\n", name_file);
-    // #elif __linux__
-    // if (tab->c && !tab->l) {
-    //     if (count_file > 1 && !tab->h)
-    //         printf("%s:", name_file);
-    //     printf("%ld\n", tab->c_line);
-    // }
-    // if (tab->l && flag_l)
-    //     printf("%s\n", name_file);
-    // if (tab->l && tab->c && !tab->c_line) {
-    //     if (!tab->h) {
-    //         printf("%s:", name_file);
-    //         printf("%ld\n", tab->c_line);
-    //     } else if (tab->h)
-    //         printf("0\n");
-    // }
-    // #endif
+    #elif __linux__
+    if (tab->c && !tab->l) {
+        if (count_file > 1 && !tab->h)
+            printf("%s:", name_file);
+        printf("%ld\n", tab->c_line);
+    }
+    if (tab->l && flag_l)
+        printf("%s\n", name_file);
+    #endif
     tab->n_line = 0;
     tab->c_line = 0;
 }
