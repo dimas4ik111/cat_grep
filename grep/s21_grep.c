@@ -4,7 +4,7 @@ int main(int argc, char** argv) {
     if (argc > 1) {
         s21_grep(argc, argv);
     } else {
-        printf("usage: s21_grep [pattern] [file] [flags]\n");
+        fprintf(stderr, "usage: s21_grep [pattern] [file] [flags]\n");
     }
     return 0;
 }
@@ -42,7 +42,7 @@ void work_grep(int argc, char** argv, parser_grep* tab) {
         grep_with_flags(tab, argv, argc, counter_files);
     }
     if (counter_files == 0 && !tab->s) {
-        printf("NO FILES to s21_grep\n");
+        fprintf(stderr, "NO FILES to s21_grep\n");
     }
 }
 
@@ -265,7 +265,7 @@ int init_flags(int argc, char** argv, parser_grep* tab) {
                             tab->e_check = 1;
                         } else {
                             if (!tab->s)
-                                printf("Null argiment after flag 'e'\n");
+                                fprintf(stderr, "Null argiment after flag 'e'\n");
                             tab->error = -1;
                         }
                         break;
@@ -275,7 +275,7 @@ int init_flags(int argc, char** argv, parser_grep* tab) {
                             res++;
                         } else {
                             if (!tab->s)
-                                printf("Null argiment after flag 'f'\n");
+                                fprintf(stderr, "Null argiment after flag 'f'\n");
                             tab->error = -1;
                         }
                         break;
@@ -309,7 +309,7 @@ int init_flags(int argc, char** argv, parser_grep* tab) {
                         break;
                     default:
                         if (!tab->s)
-                            printf("Invalid argument: %c\n", argv[i][j]);
+                            fprintf(stderr, "Invalid argument: %c\n", argv[i][j]);
                         tab->error = -1;
                         break;
                 }
@@ -347,7 +347,7 @@ void init_f(char* file_name, parser_grep* tab) {
     } else {
         tab->error = -1;
         if (!tab->s)
-            printf("after flag 'f', %s - isn't file\n", file_name);
+            fprintf(stderr, "after flag 'f', %s - isn't file\n", file_name);
     }
 }
 
